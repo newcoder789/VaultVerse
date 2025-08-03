@@ -17,14 +17,15 @@ const NFTMetadataFetcher = () => {
     const [authenticatedActor, setAuthenticatedActor] = useState(null);
     const [dip721Actor, setDip721Actor] = useState(null);
     const [authenticatedDip721Actor, setAuthenticatedDip721Actor] = useState(null);
+    const [authenticatedAgent, setAuthenticatedAgent] = useState(null);
     // const [canisterId, setCanisterId] = useState('uzt4z-lp777-77774-qaabq-cai');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [loans, setLoans] = useState([]);
     const [loanForm, setLoanForm] = useState({ tokenId: '', amount: '', interestRate: '', duration: '' });
     const [focusedTokenId, setFocusedTokenId] = useState(null);
-    const canisterId = process.env.CANISTER_ID_DIP721_NFT_CONTAINER;
-    const canisterPrincipal = process.env.CANISTER_ID_CORE_PROTOCOL_CANISTER;
+    const canisterId = 'uzt4z-lp777-77774-qaabq-cai';
+    const canisterPrincipal = 'u6s2n-gx777-77774-qaaba-cai';
     // const isLocal = window.location.hostname.includes('localhost');
     // const HOST = isLocal ? 'http://127.0.0.1:4943' : 'https://ic0.app';
     // const canisterPrincipal = 'u6s2n-gx777-77774-qaaba-cai'; 
@@ -32,13 +33,13 @@ const NFTMetadataFetcher = () => {
     const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
     useEffect(() => {
         const setupActors = async () => {
-            if (!isConnecting && user && identity) {
+            if (!isConnecting && user && identity ) {
                 const authenticatedAgent = new HttpAgent({ identity, host: 'http://127.0.0.1:4943' });
+                setAuthenticatedAgent(authenticatedAgent)
                 const agent = new HttpAgent({ host: 'http://127.0.0.1:4943' });
                 try {
                     // if (isLocal) {
                         await agent.fetchRootKey();
-                        await authenticatedAgent.fetchRootKey();
                         console.log("✅ Root key fetched for both agents");
                     // }
                 } catch (err) {
@@ -46,12 +47,12 @@ const NFTMetadataFetcher = () => {
                     console.error(err);
                 }
                 // Only create actors after root key is fetched (or immediately if not local)
+                console.log("core-id:", canisterPrincipal, "\ndip-id:", canisterId)
                 const authenticatedActor = Actor.createActor(idlFactory, {
                         agent: authenticatedAgent,
                         canisterId: canisterPrincipal,
                         host: 'http://127.0.0.1:4943/',
                     });
-
                 const authenticatedDip721Actor = Actor.createActor(dip721IdlFactory, {
                         agent: authenticatedAgent,
                         canisterId: canisterId,
@@ -134,6 +135,10 @@ const NFTMetadataFetcher = () => {
             setError('Authenticated actor not initialized');
             return;
           }
+        if(!authenticatedAgent){
+            setError("authenticated agent not set");
+            return;
+        }
         if (!user && !actor && !authenticatedDip721Actor) {
             setError('Please connect your wallet');
             return;
@@ -141,22 +146,17 @@ const NFTMetadataFetcher = () => {
 
         setLoading(true);
         setError(null);
-        try {
-
-            const test = await authenticatedActor.testMetadata()
-            console.log("Test Results:", test)
-            
+        try {            
             console.log("Creating loan with form data:", loanForm);
             if (!loanForm.tokenId || !loanForm.amount || !loanForm.interestRate || !loanForm.duration) {
-                setError('Please fill in all fields');
+                setError('Please fill in all fields');  
             }
-            console.log("canister id is working:", Principal.fromText(canisterId))  
-            const result = await authenticatedActor.createLoan(
-                Principal.fromText(canisterId),
-                BigInt(loanForm.tokenId),     
-                BigInt(loanForm.amount),      
-                BigInt(loanForm.interestRate), 
-                BigInt(loanForm.duration) * BigInt(1_000_000_000) 
+            console.log("canister id and actor and agent is working before creating loan :", Principal.fromText(canisterId), authenticatedDip721Actor)  
+            const result = await authenticatedDip721Actor.createLoan(
+                BigInt(loanForm.tokenId),
+                BigInt(loanForm.amount),
+                BigInt(loanForm.interestRate),
+                BigInt(loanForm.duration) * BigInt(1_000_000_000)
             );
             console.log("LOan creationg result:", result)
             
@@ -170,7 +170,8 @@ const NFTMetadataFetcher = () => {
                 setError('Failed to create loan: ' + JSON.stringify(result.Err));
             }
         } catch (err) {
-            setError('Error creating loan: ' + err.message);
+            setError('Error creating loan: ' + err);
+            console.log("Error creating loan: ", err)
         } finally {
             setLoading(false);
         }};

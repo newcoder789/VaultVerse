@@ -11,7 +11,7 @@ Please enter the passphrase for your identity: [hidden]
 Decryption complete.
 (variant { Ok = 1 : nat })
 
-f
+dfx start --clean --background --host 127.0.0.1:4943
 
 
 wyhxy-a475w-6tnmf-z3cny-xttnv-2aws6-buvnj-vtch5-b3qf4-qebqk-xqe
@@ -40,7 +40,7 @@ ehm6p-bceuv-4wnaw-gvdjq-2fkc6-gptzi-dgs3y-utlp3-v4c5f-uzfwz-nqe
 
 
 dfx canister call dip721_nft_container mint '(
-  principal "lsoj4-xkphy-rbr5d-a5c3x-i2g7g-rxc5g-h77ih-vozzu-qsrrz-bwiui-2ae",
+  principal "hru54-s6hka-fvpk3-z2icp-up5ox-nlisr-bkpwo-l2w6f-ztjz4-bscn7-5qe",
   vec {
     record { key = "name"; value = variant { TextContent = "Ghost Singer" } };
     record { key = "image"; value = variant { TextContent = "https://i.postimg.cc/XJQPssNX/Screenshot-2021-11-10-203714.png" } };

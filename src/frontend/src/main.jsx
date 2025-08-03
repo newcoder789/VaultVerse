@@ -10,14 +10,14 @@ import { IdentityKitProvider, IdentityKitTheme } from "@nfid/identitykit/react"
 
 import { IdentityKitAuthType } from "@nfid/identitykit";
 import { NFIDW, InternetIdentity, Stoic, OISY, MockedSigner } from "@nfid/identitykit"
-InternetIdentity.providerUrl = "http://localhost:4943/?canisterId=uxrrr-q7777-77774-qaaaq-cai&id=ulvla-h7777-77774-qaacq-cai"; 
+// InternetIdentity.providerUrl = "http://localhost:4943/?canisterId=uxrrr-q7777-77774-qaaaq-cai&id=ulvla-h7777-77774-qaacq-cai"; 
 // InternetIdentity.providerUrl = "https://identity.internetcomputer.org/"
 
-// Helper to get canister IDs from env or fallback to dev
+// Helper to get canister IDs from env or fallback to dev'u6s2n-gx777-77774-qaaba-cai'
 const CANISTER_IDS = [
-  process.env.CANISTER_ID_CORE_PROTOCOL_CANISTER || "u6s2n-gx777-77774-qaaba-cai",
-  process.env.CANISTER_ID_DIP721_NFT_CONTAINER || "uxrrr-q7777-77774-qaaaq-cai",
-  process.env.CANISTER_ID_OTHER || "uzt4z-lp777-77774-qaabq-cai"
+  "u6s2n-gx777-77774-qaaba-cai",
+ "uzt4z-lp777-77774-qaabq-cai",
+  process.env.CANISTER_ID_CORE_PROTOCOL_CANISTER || "u6s2n-gx777-77774-qaaba-cai"
 ];
 
 ReactDOM.createRoot(document.getElementById('root')).render(
