@@ -27,6 +27,14 @@ module {
         image: Text;
         attributes: [Attribute];
         collection: ?Text;
+        tokenId : ?Nat; 
     };
+  public type NormalizedMetadata = {
+    nftId : Text;
+    imageUrl : Text;
+    attributes : [(Text, Text)];
+    riskScore : Float;
+    isEligible : Bool;
+  };
 
 }

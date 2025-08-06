@@ -14,7 +14,7 @@ import Generic "Generic";
 
     // Storage for locked NFTs: (user principal → NFT list)
     private var lockedNFTs = HashMap.HashMap<Principal, [NFT]>(10, Principal.equal, Principal.hash);
-
+    
     // Lock DIP721 NFT
 //     public shared(msg) func lock_dip721(
 //         nftCanister: Principal,

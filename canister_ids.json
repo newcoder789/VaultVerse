@@ -1,0 +1,9 @@
+{
+  "auction_governance_canister": {},
+  "core_protocol_canister": {
+    "ic": "a6pz5-hqaaa-aaaad-qhnya-cai"
+  },
+  "dip721_nft_container": {
+    "ic": "azo7j-kiaaa-aaaad-qhnyq-cai"
+  }
+}

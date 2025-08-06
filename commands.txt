@@ -1,0 +1,62 @@
+dfx canister call dip721_nft_container mint '(
+  principal "i3vo2-dkkpr-fzfqo-bhzfr-bpopx-yeik7-nytnt-xqed6-hp7dj-uw7t4-pae",
+  vec {
+    record { key = "name"; value = variant { TextContent = "Ghost Singer" } };
+    record { key = "image"; value = variant { TextContent = "https://i.postimg.cc/XJQPssNX/Screenshot-2021-11-10-203714.png" } };
+    record { key = "Rarity"; value = variant { TextContent = "Legendary" } };
+    record { key = "Type"; value = variant { TextContent = "Alien" } }
+  }
+)' --network local
+Please enter the passphrase for your identity: [hidden]
+Decryption complete.
+(variant { Ok = 1 : nat })
+
+dfx start --clean --background --host 127.0.0.1:4943
+
+
+wyhxy-a475w-6tnmf-z3cny-xttnv-2aws6-buvnj-vtch5-b3qf4-qebqk-xqe
+
+
+
+ dfx canister call core_protocol_canister createLoan '( principal "u6s2n-gx777-77774-qaaba-cai", 2 : nat, 100000 : nat, 493 : nat, 7884000 : int )' --network local
+Please enter the passphrase for your identity: [hidden]
+Decryption complete.
+(variant { Err = variant { Other = "Cannot create loan with internal NFTs" } })
+
+
+
+
+https://i.postimg.cc/XJQPssNX/Screenshot-2021-11-10-203714.png
+VaultVerse NFTs
+VVNFT
+lsoj4-xkphy-rbr5d-a5c3x-i2g7g-rxc5g-h77ih-vozzu-qsrrz-bwiui-2ae
+3tz33-zg5yy-jiy2n-lkytg-247fl-kbd6x-mfx5k-dukae-lqu7e-466ly-oae
+klrif-eqbpo-l5c72-tfjlz-z4uep-62wna-5mpay-c2y5x-3fnto-pggh2-zae
+ehm6p-bceuv-4wnaw-gvdjq-2fkc6-gptzi-dgs3y-utlp3-v4c5f-uzfwz-nqe
+1697059200000000000
+(opt \"\", opt    \"  \", opt \"\", vec { prin      cipal             \"\"; principal \"\" }, )"
+
+
+
+
+dfx canister call dip721_nft_container mint '(
+  principal "njlp3-tnrlk-s3v25-rbjuh-miyxk-ohwbq-l4qan-wawsg-vaonv-gbozn-xae",
+  vec {
+    record { key = "name"; value = variant { TextContent = "Ghost Singer" } };
+    record { key = "image"; value = variant { TextContent = "https://i.postimg.cc/XJQPssNX/Screenshot-2021-11-10-203714.png" } };
+    record { key = "Rarity"; value = variant { TextContent = "Legendary" } };
+    record { key = "Type"; value = variant { TextContent = "Alien" } }
+  }
+)' --network local
+dfx canister call dip721_nft_container mint '(
+  principal "alyzz-6iu4x-esola-ynkls-qo3lb-stjgc-yifdh-jfhcd-tdyzh-mjifu-4qe",
+  vec {
+    record { key = "name"; value = variant { TextContent = "Ghost Singer" } };
+    record { key = "image"; value = variant { TextContent = "https://i.postimg.cc/XJQPssNX/Screenshot-2021-11-10-203714.png" } };
+    record { key = "Rarity"; value = variant { TextContent = "Legendary" } };
+    record { key = "Type"; value = variant { TextContent = "Alien" } }
+  }
+)' --network local
+
+
+

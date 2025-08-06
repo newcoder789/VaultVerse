@@ -1,0 +1,64 @@
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.nft-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.nft-card img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+//min
+.nft-minter {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.nft-minter h2 {
+  text-align: center;
+}
+.nft-minter form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.nft-minter label {
+  font-weight: bold;
+}
+.nft-minter input,
+.nft-minter select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+.nft-minter button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.nft-minter button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.success {
+  color: green;
+  margin-top: 10px;
+}
+.error {
+  color: red;
+  margin-top: 10px;
+}

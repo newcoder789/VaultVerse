@@ -1,0 +1,6 @@
+export const CANISTER_ID_INTERNET_IDENTITY='ulvla-h7777-77774-qaacq-cai'
+export const CANISTER_ID_FRONTEND='umunu-kh777-77774-qaaca-cai'
+export const CANISTER_ID_DIP721_NFT_CONTAINER='uzt4z-lp777-77774-qaabq-cai'
+export const CANISTER_ID_CORE_PROTOCOL_CANISTER='u6s2n-gx777-77774-qaaba-cai'
+export const CANISTER_ID_AUCTION_GOVERNANCE_CANISTER='uxrrr-q7777-77774-qaaaq-cai'
+export const CANISTER_ID='uzt4z-lp777-77774-qaabq-cai'

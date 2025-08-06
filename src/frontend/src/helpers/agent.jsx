@@ -6,7 +6,7 @@ import { HttpAgent, Actor } from "@dfinity/agent";
 import { idlFactory as targetIdlFactory } from "../../../declarations/core_protocol_canister/core_protocol_canister.did.js";
 import { useAuth } from "@nfid/identitykit/react"
 
-const LOCAL_ICP_HOST = "http://127.0.0.1:8080"; // LOCALHOST (DFX)
+const LOCAL_ICP_HOST = "http://127.0.0.1:4943"; // LOCALHOST (DFX)
 
 const TARGET_CANISTER_ID = 'u6s2n-gx777-77774-qaaba-cai';
 

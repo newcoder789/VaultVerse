@@ -1,22 +1,45 @@
-// src/core_protocol_canister/metadata.mo
+import DIP721 "dip721_interface";
+import Types "types";
+import Array "mo:base/Array";
+import Generic "Generic";
+import Text "mo:base/Text";
+import Nat "mo:base/Nat";
+import Int "mo:base/Int";
+import Bool "mo:base/Bool";
+import Principal "mo:base/Principal";
+
+
 module {
-    import DIP721 "dip721_interface";
-    import Types "types";
-    import Array "mo:base/Array";
 
     public type Attribute = Types.Attribute;
     public type NFTMetadata = Types.NFTMetadata;
     public type TokenMetadata = DIP721.TokenMetadata;
+    public type Property = Generic.Property;
+    public type Value = Generic.Value;
+    // public type NormalizedMetadata = Types.NormalizedMetadata;
+
+
+    // Helper to convert Generic.Value to Text
+    func valueToText(v : Value) : Text {
+        switch (v) {
+            case (#TextContent(t)) t;
+            case (#NatContent(n)) Nat.toText(n);
+            case (#IntContent(i)) Int.toText(i);
+            case (#BoolContent(b)) Bool.toText(b);
+            case (#Principal(p)) Principal.toText(p);
+            case _ ""; // Default for other types
+        }
+    };
 
     public func extractDIP721Metadata(
         metadata: TokenMetadata
     ) : NFTMetadata {
         // Convert properties to attributes
-        let attributes = Array.map<DIP721.Generic.Property, Attribute>(
+        let attributes = Array.map<Property, Attribute>(
             metadata.properties,
             func(prop) = { 
-                trait_type = prop.name; 
-                value = prop.value 
+                trait_type = prop.key; 
+                value = valueToText(prop.value);
             }
         );
         
@@ -26,25 +49,28 @@ module {
         var image = "";
         
         for (prop in metadata.properties.vals()) {
-            switch (prop.name) {
-                case "name" { name := prop.value };
-                case "description" { description := prop.value };
-                case "image" { image := prop.value };
+            let propValue = valueToText(prop.value);
+            switch (prop.key) {
+                case "name" { name := propValue };
+                case "description" { description := propValue };
+                case "image" { image := propValue };
                 case _ {};
             };
         };
         
-        {
-            name;
-            description;
-            image;
-            attributes;
-            collection = null;
-        }
+    {
+        name;
+        description;
+        image;
+        attributes;
+        collection = null;
+        tokenId = null;
     };
+    
+    // public func parseHttpResponse(body: Blob) : ?NFTMetadata {
+    //     // Implement your HTTP response parsing here
+    //     null // Placeholder
+    // };
+};
 
-    public func parseHttpResponse(body: Blob) : ?NFTMetadata {
-        // Implement your HTTP response parsing here
-        null // Placeholder
-    };
 }

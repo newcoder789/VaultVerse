@@ -2,23 +2,26 @@
   "canisters": {
     "internet_identity": {
       "type": "custom",
-      "candid": "internet_identity/internet_identity.did",
-      "wasm": "internet_identity/internet_identity_dev.wasm.gz",
-      "build": ""
+      "candid": "https://github.com/dfinity/internet-identity/releases/download/release-2025-04-04-v3/internet_identity.did",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/download/release-2025-04-04-v3/internet_identity_dev.wasm.gz",
+      "init_arg": "(opt record { captcha_config = opt record { max_unsolved_captchas= 50:nat64; captcha_trigger = variant {Static = variant {CaptchaDisabled}}}})",
+      "frontend": {}
     },
-    "core_protocol_canister": {
+   "core_protocol_canister": {
       "main": "src/core_protocol_canister/main.mo",
-      "type": "motoko"
+      "type": "motoko",
+      "arguments": "(opt \"https://i.postimg.cc/XJQPssNX/Screenshot-2021-11-10-203714.png\", opt    \"VaultVerse NFTs\", opt \"VVNFT\", vec { prin      cipal             \"3tz33-zg5yy-jiy2n-lkytg-247fl-kbd6x-mfx5k-dukae-lqu7e-466ly-oae\"; principal \"klrif-eqbpo-l5c72-tfjlz-z4uep-62wna-5mpay-c2y5x-3fnto-pggh2-zae\";principal \"ehm6p-bceuv-4wnaw-gvdjq-2fkc6-gptzi-dgs3y-utlp3-v4c5f-uzfwz-nqe\" }, 1697059200000000000)"
     },
     "auction_governance_canister": {
       "main": "src/auction_governance_canister/main.mo",
       "type": "motoko"
     },
+    "dip721_nft_container": {
+      "type": "motoko",
+      "main": "src/dip721_nft/main.mo",
+      "arguments": "(opt \"https://i.postimg.cc/XJQPssNX/Screenshot-2021-11-10-203714.png\", opt    \"VaultVerse NFTs\", opt \"VVNFT\", vec { prin      cipal             \"3tz33-zg5yy-jiy2n-lkytg-247fl-kbd6x-mfx5k-dukae-lqu7e-466ly-oae\"; principal \"klrif-eqbpo-l5c72-tfjlz-z4uep-62wna-5mpay-c2y5x-3fnto-pggh2-zae\";principal \"ehm6p-bceuv-4wnaw-gvdjq-2fkc6-gptzi-dgs3y-utlp3-v4c5f-uzfwz-nqe\" }, 1697059200000000000)"
+    },
     "frontend": {
-      "dependencies": [
-        "core_protocol_canister",
-        "auction_governance_canister"
-      ],
       "source": [
         "src/frontend/dist"
       ],
